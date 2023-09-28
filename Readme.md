@@ -1,27 +1,22 @@
 # I Itch As I Crave
-<div style="text-align: justify;">
-    <p>
-    A 2D game set in a 3D space where you will get to choose your dependency in life and follow the path of the one who cannot exist without it. Make sure to not lose the one who is guiding you.
-    </p>
-</div>
+
+<p style="text-align: justify;">
+A 2D game set in a 3D space where you will get to choose your dependency in life and follow the path of the one who cannot exist without it. Make sure to not lose the one who is guiding you.
+</p>
 
 <button onclick="https://chronophobia.itch.io/i-itch-as-i-crave">Itch Page</button>
 
 
 # Development
-<div style="text-align: justify;">
-    <p>
-        In the following section, the main challenges and key points in the development process will be pointed out.
-    </p>
-</div>
+<p style="text-align: justify;">
+    In the following section, the main challenges and key points in the development process will be pointed out.
+</p>
 
 ## White Space
 
-<div style="text-align: justify;">
-    <p>
-        The White space is actually a sphere that the player character can has to navigate on it and reach to a destination point which is TV/Monitor.
-    </p>
-</div>
+<p style="text-align: justify;">
+    The White space is actually a sphere that the player character can has to navigate on it and reach to a destination point which is TV/Monitor.
+</p>
 
 ### Sphere Gravity Replication
 <div style="text-align: justify;">
@@ -52,10 +47,27 @@ Capturing Inputs, storing them into the stack, and calling `Move()`:
 
 https://github.com/smaooo/I_ITCH_AS_I_CRAVE/blob/c67d5014af6cea9b0e020f29398541b213229a2a/Assets/Scripts/WhiteRoomCharacter.cs#L68-L92
 
+<p style="text-align: justify;">
 Also we should neutralize the order of inputs and always get rid of the same inputs that are behind the last one. This is for the situations that we have for example pressed `A`, then `W`, then `D` and then we have released `A` and pushed it again:
+</p>
 
 https://github.com/smaooo/I_ITCH_AS_I_CRAVE/blob/797d2ffe27027a9f990528fd411b1f60953d5a0e/Assets/Scripts/WhiteRoomCharacter.cs#L95-L168
 
+<p style="text-align: justify;">
 Now, at every call to the `Move()`, we get the latest key input in the stack and based on the direction that the key input points to we set the velocity to either horizontally or vertically.
+</p>
 
 https://github.com/smaooo/I_ITCH_AS_I_CRAVE/blob/797d2ffe27027a9f990528fd411b1f60953d5a0e/Assets/Scripts/WhiteRoomCharacter.cs#L218-L252
+
+<p style="text-align: justify;">
+With having filtered movement directions, now we can calculate the movement vector that results the character ending up on the sphere surface in the destination point.
+
+Keep in mind that we have the raw movement vector, but we want to modify it in a way that the result of the applied velocity to the character, moves it in a way that the character stays on the sphere surface. For this:
+1. We get the vector from the sphere center to the character which will give us the normal vector of the previous point.
+2. We calculate the cross product of the raw velocity vector and the normal vector, which gives us a perpendicular vector to both.
+3. And finally we will calculate the tangent vector of the destination point which will result the character being aligned with the destination point normal vector.
+
+Now that we have the corrected movement vector (the tangent vector), we can calculate the final velocity by normalizing the tangent vector and then applying the raw velocity vector magnitude to it.
+</p>
+
+https://github.com/smaooo/I_ITCH_AS_I_CRAVE/blob/97d6ef39805cc3a9199059ad1978383e2d7e3b51/Assets/Scripts/WhiteRoomCharacter.cs#L253-L261
