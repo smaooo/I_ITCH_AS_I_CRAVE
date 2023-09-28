@@ -252,14 +252,22 @@ public class WhiteRoomCharacter : MonoBehaviour
             }
 
             // calculate vector from sphere origin to character
-            Vector3 worldToCharacter = this.transform.position - sphere.transform.position;
+            //Vector3 worldToCharacter = this.transform.position - sphere.transform.position;
+            Vector3 worldToCharacter = sphere.transform.position - this.transform.position;
             // calculate prependicular vector to both worldtocharacter and velocity vector
             Vector3 prepVector = Vector3.Cross(worldToCharacter, velocity);
+
+            Vector3 rawNewPos = this.transform.position + velocity;
+            Vector3 worldToCharacterNewPos = sphere.transform.position - rawNewPos;
+            // keep the new pos distance from the sphere center same as previous
+            worldToCharacterNewPos = worldToCharacterNewPos.normalized * worldToCharacter.magnitude;
+
             // calculate tangent vector with finding the prendiculat vector to both prepvector and worldtoCharacter vectors
-            Vector3 tangent = Vector3.Cross(prepVector, worldToCharacter);
+            Vector3 tangent = Vector3.Cross(prepVector, worldToCharacterNewPos);
+
             // set velocity by normalized tangent vector and magnitude of original velocity
             velocity = tangent.normalized * velocity.magnitude;
-        
+            
             // If player is pressing moving keys then move
             if (Input.GetAxisRaw("Vertical") != 0 || Input.GetAxisRaw("Horizontal") != 0)
             {
