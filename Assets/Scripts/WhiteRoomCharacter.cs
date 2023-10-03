@@ -252,11 +252,9 @@ public class WhiteRoomCharacter : MonoBehaviour
             }
 
             // calculate vector from sphere origin to character
-            //Vector3 worldToCharacter = this.transform.position - sphere.transform.position;
             Vector3 worldToCharacter = sphere.transform.position - this.transform.position;
             // calculate prependicular vector to both worldtocharacter and velocity vector
             Vector3 prepVector = Vector3.Cross(worldToCharacter, velocity);
-
             Vector3 rawNewPos = this.transform.position + velocity;
             Vector3 worldToCharacterNewPos = sphere.transform.position - rawNewPos;
             // keep the new pos distance from the sphere center same as previous
