@@ -75,4 +75,4 @@ Now that we have the corrected movement vector, we can calculate the final veloc
 https://github.com/smaooo/I_ITCH_AS_I_CRAVE/blob/4285e0a5a6af66c40b1b9a514be42326ee1f178c/Assets/Scripts/WhiteRoomCharacter.cs#L254-L267
 
 
-![animated](./.github/velocityModification.gif)
+<img src="./.github/velocityModification.gif">
