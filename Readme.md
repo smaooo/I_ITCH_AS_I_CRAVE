@@ -6,6 +6,7 @@ A 2D game set in a 3D space where you will get to choose your dependency in life
 
 <button onclick="https://chronophobia.itch.io/i-itch-as-i-crave">Itch Page</button>
 
+<iframe width="552" height="167" frameborder="0" src="https://itch.io/embed/1356011"><a href="https://chronophobia.itch.io/i-itch-as-i-crave">I ITCH AS I CRAVE by CHRONOPHOBIA, aposakat, Soroush</a></iframe>
 
 # Development
 <p style="text-align: justify;">
@@ -76,3 +77,4 @@ https://github.com/smaooo/I_ITCH_AS_I_CRAVE/blob/4285e0a5a6af66c40b1b9a514be4232
 
 
 <img src="./.github/velocityModification.gif">
+
